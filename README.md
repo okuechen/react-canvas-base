@@ -1,2 +1,2 @@
 # react-canvas-base
-A React canvas base for owner draw components
+A React canvas base for custom draw components
