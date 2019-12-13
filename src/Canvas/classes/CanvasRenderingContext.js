@@ -11,11 +11,11 @@ export class CanvasRenderingContext {
         this.pixelRatio = window.devicePixelRatio || 1;
     }
 
-    toBase64 = () => {
+    toBase64() {
         return this.canvasElement.toDataURL();
     };
 
-    toBlob = (type = "image/png", quality = 1) => {
+    toBlob(type = "image/png", quality = 1) {
         return new Promise((resolve) => {
             this.canvasNode.toBlob((blob) => {
                 resolve(blob);
@@ -23,76 +23,76 @@ export class CanvasRenderingContext {
         });
     };
 
-    resize = (width, height) => {
+    resize(width, height) {
         this.width = width;
         this.height = height;
         this.canvasElement.width = width * this.pixelRatio;
         this.canvasElement.height = height * this.pixelRatio;
     };
 
-    getDomNode = () => {
+    getDomNode() {
         return this.canvasNode;
     };
 
-    getWidth = () => {
+    getWidth() {
         return this.width;
     };
 
-    getHeight = () => {
+    getHeight() {
         return this.height;
     };
 
-    translate = (x, y) => {
+    translate(x, y) {
         this.context.translate(x * this.pixelRatio, y * this.pixelRatio);
     }
 
-    scale = (x, y) => {
+    scale(x, y) {
         this.context.scale(x, y);
     }
 
-    rotate = (angle) => {
+    rotate(angle) {
         this.context.rotate(angle);
     }
 
-    saveState = () => {
+    saveState() {
         this.context.save();
     }
 
-    restoreState = () => {
+    restoreState() {
         this.context.restore();
     }
 
-    clear = () => {
+    clear() {
         this.context.clearRect(0, 0, this.width * this.pixelRatio, this.height * this.pixelRatio);
     }
 
-    clearRect = (x, y, width, height) => {
+    clearRect(x, y, width, height) {
         this.context.clearRect(x * this.pixelRatio, y * this.pixelRatio, width * this.pixelRatio, height * this.pixelRatio);
     }
 
     // CanvasFilter
-    setFilter = (filter) => {
+    setFilter(filter) {
         this.context.filter = filter.getFilter();
     }
 
-    removeFilter = () => {
+    removeFilter() {
         this.context.filter = "none";
     }
 
-    setLineDash = (linePx, spacePx) => {
+    setLineDash(linePx, spacePx) {
         this.context.setLineDash([linePx * this.pixelRatio, spacePx * this.pixelRatio]);
     }
 
-    setFillStyle = (style) => {
+    setFillStyle(style) {
         this.context.fillStyle = style;
     }
 
-    setStrokeStyle = (style, lineWidth = 1) => {
+    setStrokeStyle(style, lineWidth = 1) {
         this.context.strokeStyle = style;
         this.context.lineWidth = lineWidth * this.pixelRatio;
     }
 
-    setShadowStyle = (offsetX, offsetY, blur, color) => {
+    setShadowStyle(offsetX, offsetY, blur, color) {
         this.context.shadowColor = color || "rgba(0, 0, 0, 0)";
         this.context.shadowBlur = blur || 0;
         this.context.shadowOffsetX = offsetX || 0;
@@ -100,27 +100,27 @@ export class CanvasRenderingContext {
     }
 
     // CanvasFont
-    setFont = (font) => {
+    setFont(font) {
         this.context.font = `${font.fontStyle} ${font.fontWeight} ${font.fontSize * this.pixelRatio}px ${font.fontFamily}`;
     }
 
     // "alphabetic" | "top" | "hanging" | "middle" | "ideographic" | "bottom"
-    setTextBaseline = (alignment) => {
+    setTextBaseline(alignment) {
         this.context.textBaseline = alignment;
     }
 
-    setOpacity = (value) => {
+    setOpacity(value) {
         this.context.globalAlpha = value;
     }
 
-    setClipRegion = (x, y, width, height) => {
+    setClipRegion(x, y, width, height) {
         this.context.beginPath();
         this.context.rect(x * this.pixelRatio, y * this.pixelRatio, width * this.pixelRatio, height * this.pixelRatio);
         this.context.closePath();
         this.context.clip();
     }
 
-    drawRect = (x, y, width, height, fill = true, stroke = true) => {
+    drawRect(x, y, width, height, fill = true, stroke = true) {
         if (fill === true) {
             this.context.fillRect(x * this.pixelRatio, y * this.pixelRatio, width * this.pixelRatio, height * this.pixelRatio);
         }
@@ -130,16 +130,15 @@ export class CanvasRenderingContext {
         }
     }
 
-    drawArc = (x, y, radius, startAngle, endAngle) => {
+    drawArc(x, y, radius, startAngle, endAngle) {
         this.context.arc(x * this.pixelRatio, y * this.pixelRatio, radius, startAngle, endAngle);
     }
 
-    drawEllipse = (x, y, radiusX, radiusY, rotation, startAngle, endAngle) => {
+    drawEllipse(x, y, radiusX, radiusY, rotation, startAngle, endAngle) {
         this.context.ellipse(x * this.pixelRatio, y * this.pixelRatio, radiusX, radiusY, rotation, startAngle, endAngle);
     }
 
-    drawRoundRect = (x, y, width, height, radius, fill = true, stroke = true) => {
-
+    drawRoundRect(x, y, width, height, radius, fill = true, stroke = true) {
         let borderRadius = null;
         if (typeof(radius) === "number") {
             borderRadius = {
@@ -165,7 +164,7 @@ export class CanvasRenderingContext {
             .close(fill, stroke);
     }
 
-    drawLine = (x, y, x2, y2) => {
+    drawLine(x, y, x2, y2) {
         this.context.beginPath();
         this.context.moveTo(x * this.pixelRatio, y * this.pixelRatio);
         this.context.lineTo(x2 * this.pixelRatio, y2 * this.pixelRatio);
@@ -173,7 +172,7 @@ export class CanvasRenderingContext {
         this.context.stroke();
     }
 
-    drawText = (text, x, y, maxWidth, fill = true, stroke = false) => {
+    drawText(text, x, y, maxWidth, fill = true, stroke = false) {
         if (fill !== false) {
             if (maxWidth == null) {
                 this.context.fillText(text, x * this.pixelRatio, y * this.pixelRatio);
@@ -214,7 +213,7 @@ export class CanvasRenderingContext {
         this.drawText(line, x, y, null, fill, stroke);
     }
 
-    drawImage = (image, x, y, width, height) => {
+    drawImage(image, x, y, width, height) {
         if (image.getImage !== null) {
             this.context.drawImage(image.getImage(), x * this.pixelRatio, y * this.pixelRatio,
                 (width != null) ? (width * this.pixelRatio) : (width * this.pixelRatio),
@@ -230,7 +229,7 @@ export class CanvasRenderingContext {
         }
     }
 
-    drawScaledImage = (image, x, y, width, height, srcX, srcY, srcWidth, srcHeight) => {
+    drawScaledImage(image, x, y, width, height, srcX, srcY, srcWidth, srcHeight) {
         if (image.getImage !== null) {
             this.context.drawImage(image.getImage(), srcX, srcY, srcWidth, srcHeight,
                 x * this.pixelRatio, y * this.pixelRatio, width * this.pixelRatio, height * this.pixelRatio);
@@ -243,12 +242,12 @@ export class CanvasRenderingContext {
         }
     }
 
-    beginPath = () => {
+    beginPath() {
         this.canvasPath.begin();
         return this.canvasPath;
     }
 
-    createLinearGradient = (x1, y1, x2, y2, colorSteps) => {
+    createLinearGradient(x1, y1, x2, y2, colorSteps) {
         const gradient = this.context.createLinearGradient(x1 * this.pixelRatio,
             y1 * this.pixelRatio, x2 * this.pixelRatio, y2 * this.pixelRatio);
 
@@ -259,7 +258,7 @@ export class CanvasRenderingContext {
         return gradient;
     }
 
-    createRadialGradient = (x1, y1, x2, y2, radiusX, radiusY, colorSteps) =>  {
+    createRadialGradient(x1, y1, x2, y2, radiusX, radiusY, colorSteps) {
         const gradient = this.context.createRadialGradient(x1 * this.pixelRatio,
             y1 * this.pixelRatio, radiusX, x2 * this.pixelRatio, y2 * this.pixelRatio, radiusY);
 
@@ -271,7 +270,7 @@ export class CanvasRenderingContext {
     }
 
     // "repeat" | "repeat-x" | "repeat-y" | "no-repeat"
-    createPattern = (image, repetitionStyle) => {
+    createPattern (image, repetitionStyle) {
         let pattern = null;
         if (image.getImage !== null) {
             pattern = this.context.createPattern(image.getImage(), repetitionStyle);
@@ -284,7 +283,7 @@ export class CanvasRenderingContext {
         return pattern;
     }
 
-    roundNumber = (value, decimals) => {
+    roundNumber(value, decimals) {
         return Number(Number(value).toFixed(decimals));
     }
 }
