@@ -3,14 +3,15 @@ import './App.css';
 import { Canvas } from './Canvas';
 
 function App() {
-    const onDraw = (crc, frameTime) => {
+    function onDraw(crc) {
         crc.setStrokeStyle("#F00", 2);
         crc.drawLine(10, 10, 200, 200);
+
     };
 
     return (
         <div>
-            <Canvas onDraw={onDraw} drawMode={0} />
+            <Canvas onDraw={onDraw} drawMode={0}/>
         </div>
     );
 }

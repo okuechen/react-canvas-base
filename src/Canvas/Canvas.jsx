@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState, useReducer } from 'react';
 import { canvasReducer, initialCanvasState } from './reducer';
-import { CanvasRenderingContext } from './classes/CanvasRenderingContext'
+import { CanvasRenderingContext } from './'
 
 export const Canvas = ({
     onDraw,
