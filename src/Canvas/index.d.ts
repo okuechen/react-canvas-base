@@ -77,7 +77,7 @@ export declare class CanvasPath {
 
 export enum CanvasDrawMode {
     OnDemand,
-    Continous,
+    Continuous,
 }
 
 export interface CanvasProps {
