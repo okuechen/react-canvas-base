@@ -1,4 +1,7 @@
 export class CanvasFilter {
+    protected filter: string = "";
+    protected filterArray: string[] = [];
+
     constructor() {
         this.reset();
     }
@@ -12,51 +15,51 @@ export class CanvasFilter {
         this.filterArray = [];
     }
 
-    addCustomFilter(value) {
+    addCustomFilter(value: string) {
         this.addFilter(value);
     }
 
-    addBlur(length) {
+    addBlur(length: number) {
         this.addFilter(`blur(${length}px)`);
     }
 
-    addBrightness(percentage) {
+    addBrightness(percentage: number) {
         this.addFilter(`brightness(${percentage}%)`);
     }
 
-    addContrast(percentage) {
+    addContrast(percentage: number) {
         this.addFilter(`contrast(${percentage}%)`);
     }
 
-    addDropShadow(offsetX, offsetY, radius, color) {
+    addDropShadow(offsetX: number, offsetY: number, radius: number, color: string) {
         this.addFilter(`drop-shadow(${offsetX}px ${offsetY}px ${radius}px ${color})`);
     }
 
-    addGrayscale(percentage) {
+    addGrayscale(percentage: number) {
         this.addFilter(`grayscale(${percentage}%)`);
     }
 
-    hueRotation(degree) {
+    hueRotation(degree: number) {
         this.addFilter(`hue-rotate(${degree}deg)`);
     }
 
-    invert(percentage) {
+    invert(percentage: number) {
         this.addFilter(`invert(${percentage}%)`);
     }
 
-    opacity(percentage) {
+    opacity(percentage: number) {
         this.addFilter(`opacity(${percentage}%)`);
     }
 
-    saturation(percentage) {
+    saturation(percentage: number) {
         this.addFilter(`saturation(${percentage}%)`);
     }
 
-    sepia(percentage) {
+    sepia(percentage: number) {
         this.addFilter(`sepia(${percentage}%)`);
     }
 
-    addFilter(filter) {
+    protected addFilter(filter: string) {
         this.filterArray.push(filter);
         this.filter = this.filterArray.join(" ");
     }

@@ -1,12 +1,27 @@
-export const initialCanvasState = {
+import { CanvasDrawMode } from "./classes/CanvasDrawMode";
+
+export interface CanvasState {
+    width: number;
+    height: number;
+    state: string;
+    drawMode: CanvasDrawMode;
+    drawing: boolean;
+}
+
+export interface CanvasAction {
+    type: string;
+    payload?: any;
+}
+
+export const initialCanvasState: CanvasState = {
     width: 0,
     height: 0,
     state: 'INITIALIZING',
-    drawMode: 0, // 0 - on demand, 1 - continous
+    drawMode: CanvasDrawMode.OnDemand,
     drawing: false,
 };
 
-export const canvasReducer = (state, action) => {
+export const canvasReducer = (state: CanvasState, action: CanvasAction) => {
     switch (action.type) {
         case 'IDLE':
         case 'WAITING':

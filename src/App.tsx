@@ -1,8 +1,8 @@
 import React from 'react';
-import { Canvas } from './Canvas';
+import { Canvas, CanvasRenderingContext } from './Canvas';
 
-function App() {
-    function onDraw(crc) {
+const App = () => {
+    function onDraw(crc: CanvasRenderingContext) {
         // simple example
         crc.setStrokeStyle("#F00", 2);
         crc.drawLine(10, 10, 200, 200);
@@ -10,7 +10,7 @@ function App() {
 
     return (
         <div>
-            <Canvas onDraw={onDraw} drawMode={0}/>
+            <Canvas onDraw={onDraw}/>
         </div>
     );
 }
