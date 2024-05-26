@@ -12,9 +12,7 @@ export class CanvasRenderingContext {
     protected height: number = 0;
 
     constructor(protected canvasElement: HTMLCanvasElement, protected usePixelRatio: boolean = true) {
-        if (!canvasElement)
-            this.canvasElement = document.createElement("canvas");
-
+        this.canvasElement = canvasElement;
         this.context = this.canvasElement.getContext("2d") as CanvasRenderingContext2D;
         this.pixelRatio = (usePixelRatio) ? (window.devicePixelRatio || 1) : 1;
         this.canvasPath = new CanvasPath(this.context, this.pixelRatio);
@@ -37,6 +35,8 @@ export class CanvasRenderingContext {
         this.height = height;
         this.canvasElement.width = width * this.pixelRatio;
         this.canvasElement.height = height * this.pixelRatio;
+        this.canvasElement.style.width = `${width}px`;
+        this.canvasElement.style.height = `${height}px`;
     };
 
     getDomNode(): HTMLCanvasElement {
@@ -250,8 +250,8 @@ export class CanvasRenderingContext {
         const gradient = this.context.createLinearGradient(x1 * this.pixelRatio,
             y1 * this.pixelRatio, x2 * this.pixelRatio, y2 * this.pixelRatio);
 
-        for (let n = 0; n < colorSteps.length; n ++) {
-            gradient.addColorStop(colorSteps[n].offset, colorSteps[n].color);
+        for (const colorStep of colorSteps) {
+            gradient.addColorStop(colorStep.offset, colorStep.color);
         }
 
         return gradient;
@@ -261,8 +261,8 @@ export class CanvasRenderingContext {
         const gradient = this.context.createRadialGradient(x1 * this.pixelRatio,
             y1 * this.pixelRatio, radiusX, x2 * this.pixelRatio, y2 * this.pixelRatio, radiusY);
 
-        for (let n = 0; n < colorSteps.length; n ++) {
-            gradient.addColorStop(colorSteps[n].offset, colorSteps[n].color);
+        for (const colorStep of colorSteps) {
+            gradient.addColorStop(colorStep.offset, colorStep.color);
         }
 
         return gradient;

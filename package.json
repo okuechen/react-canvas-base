@@ -6,57 +6,43 @@
         "url": "https://github.com/okuechen/react-canvas-base/issues"
     },
     "homepage": "https://github.com/okuechen/react-canvas-base",
-    "version": "0.2.0",
+    "version": "1.0.0",
     "private": false,
-    "typings": "./dist/index.d.ts",
-    "main": "dist/index.js",
-    "module": "dist/index.js",
-    "keywords": [
-        "react",
-        "canvas",
-        "custom component"
-    ],
-    "babel": {
-        "presets": [
-            "@babel/react"
-        ]
-    },
     "repository": {
         "type": "git",
         "url": "https://github.com/okuechen/react-canvas-base.git"
     },
-    "dependencies": {
-        "@types/jest": "^25.1.0",
-        "@types/node": "^13.5.1",
-        "@types/react": "^16.9.19",
-        "@types/react-dom": "^16.9.5",
-        "react": "^16.12.0",
-        "react-dom": "^16.12.0",
-        "react-scripts": "3.3.0",
-        "typescript": "^3.7.5"
-    },
+    "type": "module",
+    "main": "dist/index.cjs.js",
+    "module": "dist/index.esm.js",
+    "types": "dist/index.d.ts",
     "scripts": {
-        "start": "react-scripts start",
-        "build": "tsc",
-        "eject": "react-scripts eject",
-        "publish:npm": "SET NODE_ENV=production && if exist dist rmdir /s /q dist && mkdir dist && npx babel src/Canvas --out-dir dist --copy-files"
+        "build": "rollup -c",
+        "dev": "vite",
+        "build:app": "vite build"
     },
-    "eslintConfig": {
-        "extends": "react-app"
+    "peerDependencies": {
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0"
     },
-    "browserslist": {
-        "production": [
-            ">0.2%",
-            "not dead",
-            "not op_mini all"
-        ],
-        "development": [
-            "last 1 chrome version",
-            "last 1 firefox version",
-            "last 1 safari version"
-        ]
+    "dependencies": {
+        "react": "^16.8.0 || ^17.0.0 || ^18.0.0",
+        "react-dom": "^18.3.1"
     },
     "devDependencies": {
-        "@babel/cli": "^7.7.5"
+        "@babel/core": "^7.24.6",
+        "@babel/preset-env": "^7.24.6",
+        "@babel/preset-react": "^7.24.6",
+        "@babel/preset-typescript": "^7.24.6",
+        "@rollup/plugin-babel": "^6.0.4",
+        "@rollup/plugin-commonjs": "^25.0.8",
+        "@rollup/plugin-node-resolve": "^15.2.3",
+        "@rollup/plugin-terser": "^0.4.4",
+        "@types/react": "^18.3.3",
+        "@vitejs/plugin-react": "^4.3.0",
+        "rollup": "^4.18.0",
+        "rollup-plugin-typescript2": "^0.36.0",
+        "typescript": "^5.4.5",
+        "vite": "^5.2.11",
+        "vite-tsconfig-paths": "^4.3.2"
     }
 }

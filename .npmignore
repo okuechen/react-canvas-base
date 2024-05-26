@@ -1,7 +1,9 @@
-/node_modules
-/src
-/public
-/.git
-.editorconfig
-.package-lock.json
-
+src/
+dist-app/
+public/
+.vite/
+.vscode/
+node_modules/
+vite.config.ts
+tsconfig.json
+.babelrc
