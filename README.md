@@ -90,7 +90,7 @@ export default App;
 v1.0.0
 
 - Fixed aspect ratio
-- update to newest react version.
-- vite and rollup instead of react-script.
-- better animation frame handling.
-- detached drawing (especially in continuous mode) from react states for way better performance.
+- Update to newest react version.
+- Vite and rollup instead of react-script.
+- Better animation frame handling.
+- Detached drawing (especially in continuous mode) from react states for way better performance.

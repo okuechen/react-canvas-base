@@ -10,8 +10,14 @@
     "private": false,
     "repository": {
         "type": "git",
-        "url": "https://github.com/okuechen/react-canvas-base.git"
+        "url": "git+https://github.com/okuechen/react-canvas-base.git"
     },
+    "keywords": [
+        "react",
+        "component",
+        "canvas",
+        "performance"
+    ],
     "type": "module",
     "main": "dist/index.cjs.js",
     "module": "dist/index.esm.js",
