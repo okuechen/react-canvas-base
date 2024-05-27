@@ -1,6 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { Canvas, CanvasDrawMode, CanvasRenderingContext } from './Canvas/index';
+import { Canvas, CanvasDrawMode, CanvasRenderingContext } from './index';
 
 function App() {
     function onDraw(crc: CanvasRenderingContext, frameTime: number) {

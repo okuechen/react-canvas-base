@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 
-import { CanvasRenderingContext } from './'
+import { CanvasRenderingContext } from './types/CanvasRenderingContext';
 import { CanvasDrawMode } from './types/CanvasDrawMode';
 import { useAnimationFrame } from './hooks/useAnimationFrame';
 

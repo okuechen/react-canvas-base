@@ -7,3 +7,5 @@ node_modules/
 vite.config.ts
 tsconfig.json
 .babelrc
+index.html
+rollup.config.js

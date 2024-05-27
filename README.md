@@ -87,6 +87,10 @@ export default App;
 
 ## Changelog
 
+v1.0.1
+
+- Export type fix in rollup process.
+
 v1.0.0
 
 - Fixed aspect ratio
