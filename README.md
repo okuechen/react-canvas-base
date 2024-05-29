@@ -87,6 +87,10 @@ export default App;
 
 ## Changelog
 
+v1.0.2
+
+- Add many missing canvas options for text and image control.
+
 v1.0.1
 
 - Export type fix in rollup process.
