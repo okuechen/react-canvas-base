@@ -20,7 +20,7 @@ export class CanvasRenderingContext {
 
     toBase64(): string {
         return this.canvasElement.toDataURL();
-    };
+    }
 
     toBlob(type: string = "image/png", quality: number = 1): Promise<Blob | null> {
         return new Promise((resolve) => {
@@ -28,7 +28,7 @@ export class CanvasRenderingContext {
                 resolve(blob);
             }, type, quality);
         });
-    };
+    }
 
     resize(width: number, height: number) {
         this.width = width;
@@ -37,19 +37,31 @@ export class CanvasRenderingContext {
         this.canvasElement.height = height * this.pixelRatio;
         this.canvasElement.style.width = `${width}px`;
         this.canvasElement.style.height = `${height}px`;
-    };
+    }
 
     getDomNode(): HTMLCanvasElement {
         return this.canvasElement;
-    };
+    }
+
+    getContext(): CanvasRenderingContext2D {
+        return this.context;
+    }
 
     getWidth(): number {
         return this.width;
-    };
+    }
 
     getHeight(): number {
         return this.height;
-    };
+    }
+
+    getPixelRatio(): number {
+        return this.pixelRatio;
+    }
+
+    setTransform(a: number, b: number, c: number, d: number, e: number, f: number) {
+        this.context.setTransform(a, b, c, d, e, f);
+    }
 
     translate(x: number, y: number) {
         this.context.translate(x * this.pixelRatio, y * this.pixelRatio);
@@ -87,10 +99,6 @@ export class CanvasRenderingContext {
         this.context.filter = "none";
     }
 
-    setLineDash(linePx: number, spacePx: number) {
-        this.context.setLineDash([linePx * this.pixelRatio, spacePx * this.pixelRatio]);
-    }
-
     setFillStyle(style: string) {
         this.context.fillStyle = style;
     }
@@ -111,12 +119,68 @@ export class CanvasRenderingContext {
         this.context.font = `${font.style} ${font.weight} ${font.size * this.pixelRatio}px ${font.family}`;
     }
 
-    setTextBaseline(alignment: "alphabetic" | "top" | "hanging" | "middle" | "ideographic" | "bottom") {
+    setTextBaseline(alignment: CanvasTextBaseline) {
         this.context.textBaseline = alignment;
+    }
+
+    setTextAlignment(alignment: CanvasTextAlign) {
+        this.context.textAlign = alignment;
+    }
+
+    setTextDirection(direction: CanvasDirection) {
+        this.context.direction = direction;
+    }
+
+    setFontKerning(kerning: CanvasFontKerning) {
+        this.context.fontKerning = kerning;
+    }
+
+    setFontStretch(stretch: CanvasFontStretch) {
+        this.context.fontStretch = stretch;
+    }
+
+    setFontVariantCaps(caps: CanvasFontVariantCaps) {
+        this.context.fontVariantCaps = caps;
+    }
+
+    setLetterSpacing(spacing: string) {
+        this.context.letterSpacing = spacing;
+    }
+
+    setTextRendering(rendering: CanvasTextRendering) {
+        this.context.textRendering = rendering;
     }
 
     setOpacity(value: number) {
         this.context.globalAlpha = value;
+    }
+
+    setGlobalCompositeOperation(operation: GlobalCompositeOperation) {
+        this.context.globalCompositeOperation = operation;
+    }
+
+    setImageSmoothingEnabled(enabled: boolean) {
+        this.context.imageSmoothingEnabled = enabled;
+    }
+
+    setImageSmoothingQuality(quality: ImageSmoothingQuality) {
+        this.context.imageSmoothingQuality = quality;
+    }
+
+    setLineCap(lineCap: CanvasLineCap) {
+        this.context.lineCap = lineCap;
+    }
+
+    setLineDashOffset(offset: number) {
+        this.context.lineDashOffset = offset;
+    }
+
+    setLineJoin(lineJoin: CanvasLineJoin) {
+        this.context.lineJoin = lineJoin;
+    }
+
+    setLineDash(linePx: number, spacePx: number) {
+        this.context.setLineDash([linePx * this.pixelRatio, spacePx * this.pixelRatio]);
     }
 
     setClipRegion(x: number, y: number, width: number, height: number) {
@@ -176,6 +240,10 @@ export class CanvasRenderingContext {
         this.context.lineTo(x2 * this.pixelRatio, y2 * this.pixelRatio);
         this.context.closePath();
         this.context.stroke();
+    }
+
+    measureText(text: string): TextMetrics {
+        return this.context.measureText(text);
     }
 
     drawText(text: string, x: number, y: number, maxWidth: number, fill: boolean = true, stroke: boolean = false) {
