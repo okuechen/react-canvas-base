@@ -43,7 +43,6 @@ export const Canvas: React.FC<CanvasProps> = ({
     useEffect(() => {
         if (canvasRenderingContext.current) {
             canvasRenderingContext.current.resize(width, height);
-            console.log('CanvasRenderingContext size.');
         }
     }, [width, height]);
 
