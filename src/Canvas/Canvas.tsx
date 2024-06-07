@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useCallback } from 'react';
 
 import { CanvasRenderingContext } from './types/CanvasRenderingContext';
 import { CanvasDrawMode } from './types/CanvasDrawMode';
@@ -24,18 +24,18 @@ export const Canvas: React.FC<CanvasProps> = ({
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const canvasRenderingContext = useRef<CanvasRenderingContext | null>(null);
-
-    useAnimationFrame((deltaTime) => {
+    const renderCallback = useCallback((deltaTime: number) => {
         if (canvasRenderingContext.current) {
             onDraw(canvasRenderingContext.current, deltaTime);
         }
-    }, drawMode === CanvasDrawMode.Continuous);
+    }, [onDraw, canvasRenderingContext.current]);
+
+    useAnimationFrame(renderCallback, drawMode === CanvasDrawMode.Continuous);
 
     useEffect(() => {
         if (canvasRef.current) {
             const canvas = canvasRef.current;
             canvasRenderingContext.current = new CanvasRenderingContext(canvas, true);
-            canvasRenderingContext.current.resize(width, height);
         }
 
     }, [canvasRef]);

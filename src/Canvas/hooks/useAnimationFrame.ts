@@ -20,5 +20,5 @@ export function useAnimationFrame(callback: (deltaTime: number) => void, contino
     useEffect(() => {
         requestRef.current = requestAnimationFrame(animate);
         return () => cancelAnimationFrame(requestRef.current);
-    }, [continous]);
+    }, [continous, callback]);
 }

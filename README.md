@@ -27,8 +27,6 @@ function App() {
         }} />
     );
 }
-
-export default App;
 ```
 
 ### Draw a centered label inside a rectangle
@@ -54,8 +52,6 @@ function App() {
         }} />
     );
 }
-
-export default App;
 ```
 
 ### Draw a simple animation with frame-time and continuous drawing
@@ -81,11 +77,52 @@ function App() {
         }} />
     );
 }
+```
 
-export default App;
+### Draw counter parallel to html span with continuous drawing using a react state
+
+```react
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Canvas, CanvasDrawMode, CanvasRenderingContext } from './index';
+
+function App() {
+    const [counter, setCounter] = React.useState(0);
+
+    React.useEffect(() => {
+        const timeout = setTimeout(() => {
+            setCounter(counter => counter + 1);
+        }, 1000);
+
+        return () => clearInterval(timeout);
+    }, [counter]);
+
+    function onDraw(crc: CanvasRenderingContext, frameTime: number) {
+        // simple example
+        crc.clear();
+
+        crc.setStrokeStyle("#F00", 2);
+        crc.drawLine(10, 25, 130, 25);
+        crc.setFont({ size: 16, family: "Arial", weight: "bold", style: "" });
+
+        crc.drawText(`Canvas Counter: ${counter}`, 10, 20, 200);
+    };
+
+    return (
+        <div style={{ display: 'flex', flexDirection: 'column'}}>
+            <span>HTML Counter: {counter}</span>
+            <Canvas width={200} height={200} onDraw={onDraw} drawMode={CanvasDrawMode.Continuous}/>
+        </div>
+    );
+};
+
 ```
 
 ## Changelog
+
+v1.0.3
+
+- Better state integration. Updated App example to test it.
 
 v1.0.2
 
@@ -97,7 +134,7 @@ v1.0.1
 
 v1.0.0
 
-- Fixed aspect ratio
+- Fixed aspect ratio.
 - Update to newest react version.
 - Vite and rollup instead of react-script.
 - Better animation frame handling.
